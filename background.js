@@ -12,10 +12,7 @@ messenger.addressBooks.provider.onSearchRequest.addListener(async (node, searchS
     console.log("query:", query)
     console.log("easbridge:", messenger.EASBridge)
     const results = await browser.EASBridge.searchGal(searchString);
-    console.log("tbsync:", TbSync)
-    console.log("tbsync:", messenger.EAS4TbSync)
-    let gal_result = eas.network.getSearchResults(this.folderData.accountData, searchString)
-    console.log(gal_result)
+    console.log("results:", results)
     /****
     let json = [
       {

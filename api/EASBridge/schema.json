@@ -1,0 +1,16 @@
+[
+  {
+    "namespace": "EASBridge",
+    "functions": [
+      {
+        "name": "searchGal",
+        "type": "function",
+        "async": true,
+        "parameters": [
+          { "name": "query", "type": "string" }
+        ]
+      }
+    ]
+  }
+]
+
