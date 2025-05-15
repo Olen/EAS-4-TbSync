@@ -1,4 +1,14 @@
 (function (exports) {
+    function searchObjects(list, query) {
+      const lowerQuery = query.toLowerCase();
+
+      return list.filter(obj =>
+        Object.values(obj).some(value =>
+          typeof value === "string" && value.toLowerCase().includes(lowerQuery)
+        )
+      );
+    }
+
     var EASBridge = class extends ExtensionCommon.ExtensionAPI {
       getAPI(context) {
         return {
@@ -21,9 +31,29 @@
               
               const eas = TbSync.providers.eas;
               console.log("EAS", eas);
-              console.log("SyncData", eas.TbSync.SyncData);
-              console.log("AccountData", eas.TbSync.SyncData.accountData);
-              let result = await eas.network.getSearchResults(eas.TbSync.SyncData.accountData, query)
+              let result = []
+              try {
+                console.log("SyncData", eas.TbSync.SyncData);
+                console.log("AccountData", eas.TbSync.SyncData.accountData);
+                result = await eas.network.getSearchResults(eas.TbSync.SyncData.accountData, query)
+              } catch (error) {
+                console.error(error)
+                const json = [
+                  {
+                    name: "Alice",
+                    email: "alice@example.com"
+                  },
+                  {
+                    name: "Bob",
+                    email: "bob@example.com"
+                  },
+                  {
+                    name: "Carol",
+                    email: "carol@example.com"
+                  }
+                ];
+                result = searchObjects(json, query);
+              }
               console.log("Result", result);
               return result
 

@@ -11,23 +11,8 @@ messenger.addressBooks.provider.onSearchRequest.addListener(async (node, searchS
     console.log("searchString:", searchString)
     console.log("query:", query)
     console.log("easbridge:", messenger.EASBridge)
-    const results = await browser.EASBridge.searchGal(searchString);
-    console.log("results:", results)
-    /****
-    let json = [
-      {
-        name: "Alice",
-        email: "alice@example.com"
-      },
-      {
-        name: "Bob",
-        email: "bob@example.com"
-      },
-      {
-        name: "Carol",
-        email: "carol@example.com"
-      }
-    ];
+    const json = await browser.EASBridge.searchGal(searchString);
+    console.log("results:", json)
     return {
         isCompleteResult: true,
         // Return an array of ContactProperties as results.
@@ -36,7 +21,6 @@ messenger.addressBooks.provider.onSearchRequest.addListener(async (node, searchS
             PrimaryEmail: contact.email
         }))
     };
-    *****/
 }, {
     addressBookName: "GAL",
     isSecure: true,
