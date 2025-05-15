@@ -21,7 +21,8 @@
     "scripts": ["background.js"]
   },
   "permissions": [
-    "notifications"
+    "notifications",
+    "addressBooks"
   ],
   "experiment_apis": {
     "LegacyHelper": {
@@ -38,6 +39,14 @@
         "scopes": ["addon_parent"],
         "paths": [["EAS4TbSync"]],
         "script": "api/EAS4TbSync/implementation.js"
+      }
+    },
+    "EASBridge": {
+      "schema": "api/EASBridge/schema.json",
+      "parent": {
+        "script": "api/EASBridge/implementation.js",
+        "scopes": ["addon_parent"],
+        "paths": [["EASBridge"]]
       }
     }
   }
